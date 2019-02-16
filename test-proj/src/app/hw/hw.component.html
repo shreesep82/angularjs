@@ -1,0 +1,23 @@
+<p>
+        This is coming from app-hw component!
+</p>
+<p>
+{{msg}}
+{{msg2}}
+</p>
+
+<p>
+{{ concat('*** ' + msg2 + ' ***') }}
+</p>
+
+<!--p>
+{{ concat( (msg2) => '*** ' + msg2 + ' ***' ) }}
+</p-->
+
+<p>
+{{ "toUpperCase('abc')" }}
+</p>
+
+<p *ngFor="let num of json_data.array">
+{{ num }}
+</p>
