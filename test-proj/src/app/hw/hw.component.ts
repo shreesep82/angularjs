@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { Object } from './obj.model';
 
 @Component({
   selector: 'app-hw',
@@ -10,6 +11,7 @@ export class HwComponent implements OnInit {
   msg: string = "hi"
   msg2: any;
   @Input('param') param: string;
+  @Input('obj') obj: Object;
   constructor() {
         setInterval( () => {
                 this.msg2 = new Date().toDateString()
@@ -17,7 +19,7 @@ export class HwComponent implements OnInit {
   }
 
   ngOnInit() {
-          this.json_data = { array : [ ['1234', this.param], ['0000', '4321'] ] }
+          this.json_data = { array : [ ['1234', this.param], ['0000', '4321'], [this.obj.name, 'age : ' + this.obj.age] ] }
   }
 
   formatize = (msg: string) => '--' + msg.toUpperCase() + '--'
