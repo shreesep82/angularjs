@@ -14,10 +14,12 @@
 {{ concat( (msg2) => '*** ' + msg2 + ' ***' ) }}
 </p-->
 
-<p>
-{{ "toUpperCase('abc')" }}
+<button (click)="toggle_fun()" >{{ toggle_caption }}</button>
+
+<p *ngIf="toggle_var">
+{{ msg2.toUpperCase() + ' ' + msg2.includes("Feb") }}
 </p>
 
-<p *ngFor="let num of json_data.array">
+<p class="p-hw" *ngFor="let num of json_data.array">
 {{ num }}
 </p>
