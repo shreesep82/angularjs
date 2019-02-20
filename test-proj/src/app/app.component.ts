@@ -10,6 +10,7 @@ export class AppComponent {
   title = 'test-proj';
 
   obj: Object;
+  input_text: string = "Initial value";
 
   constructor() {
         this.obj = new Object()
