@@ -1,0 +1,12 @@
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+
+<div ng-app="" ng-init="var='some_value';var3='some_other_value';obj={key: 'value'};arr=[1,2,3]">
+  <input type=text ng-model="var2"></input>
+  <b ng-bind="var2 + '--' + var"></b>
+  <p>{{var2}}</p>
+
+
+  <p ng-bind="var3"></p>
+  <p>{{obj.key}}</p>
+  <p ng-bind="obj.key + arr[2]"></p>
+</div>
