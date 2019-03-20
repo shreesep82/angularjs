@@ -1,21 +1,22 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { MymodModule } from './mymod/mymod.module';
-import { HttpClientModule } from '@angular/common/http';
 
+import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { MyserviceService } from './myservice.service';
+import { View1Component } from './view1/view1.component';
+import { View2Component } from './view2/view2.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    View1Component,
+    View2Component
   ],
   imports: [
     BrowserModule,
-    MymodModule,
-    HttpClientModule
+    AppRoutingModule
   ],
-  providers: [MyserviceService],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
