@@ -7,4 +7,10 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'myrouting';
+  view1_link = "view1";
+
+
+  routes = [
+	{ 'link_name' : 'View-2', link : 'view2' }
+  ]
 }

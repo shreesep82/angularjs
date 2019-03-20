@@ -7,6 +7,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class View1Component implements OnInit {
 
+  routes = [
+	{ 'link_name' : 'View11', link : 'view11' }
+  ]
+
   constructor() { }
 
   ngOnInit() {

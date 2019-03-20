@@ -1,2 +1,10 @@
+<h1> Routing basics </h1>
+
+<p>
+	<a [routerLink]='view1_link'>View-1</a>
+</p>
+<p>
+<a *ngFor="let route of routes" [routerLink]='route.link'>{{route.link_name}}</a>
+</p>
 
 <router-outlet></router-outlet>
