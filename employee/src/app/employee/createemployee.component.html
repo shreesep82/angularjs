@@ -1,0 +1,50 @@
+<form class="form-horizontal" [formGroup]="form_group" (ngSubmit)="onSubmit()">
+	<p> 
+	Name:
+	</p>
+	<input type=text id=name formControlName="name" form-control>
+
+	<p>
+	Number: 
+	</p>
+	<input type=text id=number formControlName="number" >
+
+	<div formGroupName="skills">
+		<p>
+		Skills:
+		</p>
+		<input type=text id=skill_name formControlName=skill_name >
+
+		<p>
+		Exp in years:
+		</p>
+		<input type=text id=exp_years formControlName=exp_years >
+		
+		<p>
+		<label>Level</label>
+		</p>
+
+		<label>Low</label>
+		<input type=radio id=level formControlName=level value="low">
+		<label>High</label>
+		<input type=radio id=level formControlName=level value="high">
+	</div>
+
+	<p>
+	<button type=submit>Save</button>
+	</p>
+</form>
+
+
+<p>
+Name: {{form_group.controls.name.value}}
+</p>
+<p>
+Number: {{form_group.controls.number.value}}
+</p>
+
+<p>
+Exp in years: {{form_group.controls.skills.controls.exp_years.value}}
+</p>
+
+

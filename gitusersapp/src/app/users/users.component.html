@@ -1,0 +1,9 @@
+<div class="container">
+<nav class="navbar navbar-default">
+<ul class="nav navbar-nav" *ngFor="let user of users">
+	<li><a routerLink='displayuser/{{user.id}}' >{{user.id}}</a></li>
+</ul>
+</nav>
+
+<router-outlet></router-outlet>
+</div>
