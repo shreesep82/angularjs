@@ -1,38 +1,46 @@
 <form class="form-horizontal" [formGroup]="form_group" (ngSubmit)="onSubmit()">
-	<p> 
-	Name:
-	</p>
-	<input type=text id=name formControlName="name" form-control>
 
-	<p>
-	Number: 
-	</p>
-	<input type=text id=number formControlName="number" >
 
-	<div formGroupName="skills">
-		<p>
-		Skills:
-		</p>
-		<input type=text id=skill_name formControlName=skill_name >
 
-		<p>
-		Exp in years:
-		</p>
-		<input type=text id=exp_years formControlName=exp_years >
-		
-		<p>
-		<label>Level</label>
-		</p>
 
-		<label>Low</label>
-		<input type=radio id=level formControlName=level value="low">
-		<label>High</label>
-		<input type=radio id=level formControlName=level value="high">
-	</div>
+		<div class="form-group" [ngClass]="{'has-error' : form_group.get('name').errors && (form_group.get('name').touched || form_group.get('name').dirty)}">
+			Name: <input type=text id=name formControlName="name" class="form-control">
+			<span>{{messagesOnView['name']}}</span>
+		</div>
 
-	<p>
-	<button type=submit>Save</button>
-	</p>
+
+		<div class="form-group">
+			<!--label class="col-sm-2 control-label" for="number">Number</label-->
+			Number: <input type=text id=number formControlName="number" class="form-control">
+			<span>{{messagesOnView['number']}}</span>
+		</div>
+
+		<div formGroupName="skills">
+			<p>
+			Skill name: <input type=text id=skill_name formControlName=skill_name class="form-control">
+			<span>{{messagesOnView['skill_name']}}</span>
+			</p>
+
+			<p>
+			Exp in years: <input type=text id=exp_years formControlName=exp_years class="form-control">
+			<span>{{messagesOnView['exp_years']}}</span>
+			</p>
+
+			<p>
+			Low: <input type=radio id=level formControlName=level value="low">
+			High: <input type=radio id=level formControlName=level value="high">
+			<span>{{messagesOnView['level']}}</span>
+			</p>
+			
+		</div>
+
+		<div class="form-group">
+			<p>
+			<button type=submit>Save</button>
+			<button (click)="onLoadData()">Load data</button>
+			<button (click)="onUpdateSkills()">Update skills</button>
+			</p>
+		</div>
 </form>
 
 
@@ -47,4 +55,15 @@ Number: {{form_group.controls.number.value}}
 Exp in years: {{form_group.controls.skills.controls.exp_years.value}}
 </p>
 
-
+<p>
+form details: {{form_group.value | json}}
+</p>
+<p>
+Skills form details: {{form_group.get('skills').value | json}}
+</p>
+<p>
+Name touched field: {{form_group.controls.name.touched }}
+</p>
+<p>
+Name valid field: {{form_group.controls.name.valid }}
+</p>
