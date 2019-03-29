@@ -1,3 +1,42 @@
-<p>
-  listemployee works!
-</p>
+<table class="table" width="100" border=1>
+  <thead class="thead-dark">
+  <tr>
+      <th>id</th>
+      <th>Name</th>
+      <th>Contact</th>
+      <th>Email</th>
+      <th>Phone</th>
+      <th>Skills</th>
+      <th>Action</th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <tr *ngFor="let employee of employee_details">
+    <td>
+        {{employee.id}}
+    </td>
+    <td>
+        {{employee.name}}
+    </td>
+    <td>
+        {{employee.contact}}
+    </td>
+    <td>
+        {{employee.email}}
+    </td>
+    <td>
+        {{employee.phone}}
+    </td>
+    <td>
+      <span *ngFor="let skill of employee.skills; let i = index">
+        <hr *ngIf="i > 0">
+        {{skill | json}}
+      </span>
+    </td>
+    <td>
+        <button class="btn btn-primary" (click)="edit(employee.id)">Edit</button>
+    </td>
+  </tr>
+  </tbody>
+</table>

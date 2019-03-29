@@ -3,40 +3,71 @@
 
 
 
-		<div class="form-group" [ngClass]="{'has-error' : form_group.get('name').errors && (form_group.get('name').touched || form_group.get('name').dirty)}">
-			Name: <input type=text id=name formControlName="name" class="form-control">
-			<span>{{messagesOnView['name']}}</span>
-		</div>
-
-
-		<div class="form-group">
-			<!--label class="col-sm-2 control-label" for="number">Number</label-->
-			Number: <input type=text id=number formControlName="number" class="form-control">
-			<span>{{messagesOnView['number']}}</span>
-		</div>
-
-		<div formGroupName="skills">
-			<p>
-			Skill name: <input type=text id=skill_name formControlName=skill_name class="form-control">
-			<span>{{messagesOnView['skill_name']}}</span>
-			</p>
-
-			<p>
-			Exp in years: <input type=text id=exp_years formControlName=exp_years class="form-control">
-			<span>{{messagesOnView['exp_years']}}</span>
-			</p>
-
-			<p>
-			Low: <input type=radio id=level formControlName=level value="low">
-			High: <input type=radio id=level formControlName=level value="high">
-			<span>{{messagesOnView['level']}}</span>
-			</p>
-			
+		<div class="form-group" [ngClass]="{'has-error' : messagesOnView.name }">
+			Name: <input type=text id=name formControlName="name" class="form-control" (blur)="displayValidationErrors()">
+			<span class="help-block" *ngIf="messagesOnView.name">{{messagesOnView['name']}}</span>
 		</div>
 
 		<div class="form-group">
+		Email: <input type=radio id=contact formControlName=contact value="email" >
+		Phone: <input type=radio id=contact formControlName=contact value="phone" >
+		</div>
+
+		<div formGroupName="email_group">
+
+			<div class="form-group" [ngClass]="{'has-error' : messagesOnView.email || messagesOnView.email_group}">
+				Email: <input type=text id=email formControlName="email" class="form-control" (blur)="displayValidationErrors_email_group()">
+				<span class="help-block" *ngIf="messagesOnView.email">{{messagesOnView['email']}}</span>
+			</div>
+
+			<div class="form-group" [ngClass]="{'has-error' : messagesOnView.confirm_email  || messagesOnView.email_group}">
+				Confirm Email: <input type=text id=confirm_email formControlName="confirm_email" class="form-control" (blur)="displayValidationErrors_email_group()">
+				<span class="help-block" *ngIf="messagesOnView.confirm_email || messagesOnView.email_group">
+					{{messagesOnView['confirm_email'] ? messagesOnView['confirm_email'] : messagesOnView['email_group']}}</span>
+
+			</div>
+		</div>
+
+		<div class="form-group" [ngClass]="{'has-error' : messagesOnView.number }">
+			Phone number: <input type=text id=number formControlName="number" class="form-control" >
+			<span class="help-block" *ngIf="messagesOnView.number">{{messagesOnView['number']}}</span>
+		</div>
+
+		<div class="well">
+			<div class="form-group">
+				<button (click)="addSkills()" class="btn btp-primary" [disabled]="form_group.get('skills').invalid">Add Skills</button>
+			</div>
+			<div formArrayName="skills" *ngFor="let skill of form_group.get('skills').controls; let i = index">
+				<div [formGroupName]="i">
+
+					<hr *ngIf="i > 0">
+
+					<div class="form-group" [ngClass]="{'has-error' : skill.get('skill_name').invalid && skill.get('skill_name').touched }">
+						<button class="btn btn-danger pull-right" *ngIf="form_group.get('skills').length > 1" (click)="removeSkill(i)">
+							<span class="glyphicon glyphicon-remove"></span>
+						</button>
+					Skill name: <input type=text [id]="'skill_name' + i" formControlName=skill_name class="form-control" >
+					<span class="help-block" *ngIf="skill.get('skill_name').errors?.required && skill.get('skill_name').touched">Skill name mandatory</span>
+					</div>
+
+					<div class="form-group" [ngClass]="{'has-error' : skill.get('exp_years').invalid && skill.get('exp_years').touched }">
+					Exp in years: <input type=text [id]="'exp_years' + i" formControlName=exp_years class="form-control" >
+					<span class="help-block" *ngIf="skill.get('exp_years').errors?.required && skill.get('exp_years').touched">Experience required</span>
+					</div>
+
+					<div class="form-group" [ngClass]="{'has-error' : skill.get('level').invalid && skill.get('level').touched }">
+					Low: <input type=radio [id]="'level' + i" formControlName=level value="low" >
+					High: <input type=radio [id]="'level' + i" formControlName=level value="high" >
+					<span class="help-block" *ngIf="skill.get('level').errors?.required && skill.get('level').touched">Level needed</span>
+					</div>
+
+				</div>
+			</div>
+		</div>
+
+		<div class="form-group">
 			<p>
-			<button type=submit>Save</button>
+			<button type=submit [disabled]="form_group.invalid">Save</button>
 			<button (click)="onLoadData()">Load data</button>
 			<button (click)="onUpdateSkills()">Update skills</button>
 			</p>
@@ -44,7 +75,7 @@
 </form>
 
 
-<p>
+<!--p>
 Name: {{form_group.controls.name.value}}
 </p>
 <p>
@@ -66,4 +97,4 @@ Name touched field: {{form_group.controls.name.touched }}
 </p>
 <p>
 Name valid field: {{form_group.controls.name.valid }}
-</p>
+</p-->

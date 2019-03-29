@@ -1,0 +1,56 @@
+{
+  "employee": [
+    {
+      "id": 1,
+      "name": "shreekanth",
+      "contact": "phone",
+      "phone": "+91-9986004469",
+      "email": "shree.sep82@gmail.com",
+      "skills": [
+        {
+          "skill_name": "C++",
+          "exp_years": "6",
+          "level": "high"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "kanth",
+      "contact": "email",
+      "phone": "9986004469",
+      "email": "shree.sep@gmail.com",
+      "skills": [
+        {
+          "skill_name": "NodeJS",
+          "exp_years": "8",
+          "level": "high"
+        },
+        {
+          "skill_name": "C++",
+          "exp_years": "3",
+          "level": "low"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "name": "shree2",
+      "contact": "email",
+      "phone": "+91-9986004469",
+      "email": "shree.sep82@gmail.com",
+      "skills": [
+        {
+          "skill_name": "C++",
+          "exp_years": "6",
+          "level": "high"
+        },
+        {
+          "skill_name": "JQuery",
+          "exp_years": "6",
+          "level": "high"
+        }
+      ]
+    }
+  ]
+}
