@@ -10,7 +10,7 @@ import { CustomPreloadingService } from '../custom-preloading.service'
 const routes: Routes = [
 	{ path : 'employee', data : { preload : false }, loadChildren : '../employee/employee.module#EmployeeModule' },
 	{ path : 'home', component : HomeComponent },
-	{ path : '', redirectTo : '/home', pathMatch : 'full' }
+	{ path : '', redirectTo : '/home', pathMatch : 'full' },
 	{ path : '**', component : PagenotfoundComponent }
 ];
 

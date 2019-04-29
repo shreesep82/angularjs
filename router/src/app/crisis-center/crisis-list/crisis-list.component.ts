@@ -1,0 +1,47 @@
+import { Component, OnInit }  from '@angular/core';
+import { ActivatedRoute }     from '@angular/router';
+
+import { CrisisService }  from '../crisis.service';
+import { Crisis }         from '../crisis';
+import { Observable }     from 'rxjs';
+import { switchMap }      from 'rxjs/operators';
+
+@Component({
+  selector: 'app-crisis-list',
+  templateUrl: './crisis-list.component.html',
+  styleUrls: ['./crisis-list.component.css']
+})
+export class CrisisListComponent implements OnInit {
+  crises$: Observable<Crisis[]>;
+  selectedId: number;
+
+  constructor(
+    private service: CrisisService,
+    private route: ActivatedRoute
+  ) {}
+
+  ngOnInit() {
+    this.crises$ = this.route.paramMap.pipe(
+      switchMap(params => {
+        this.selectedId = +params.get('id');
+        console.log('selectedId : ', this.selectedId)
+        console.log('params : ', params)
+        return this.service.getCrises();
+      })
+    );
+    
+    //this.crises$ = this.service.getCrises();
+    
+    this.crises$.subscribe( (crisis_array) => {
+      crisis_array.forEach( (crisis) => {
+        console.log('crisis : ', crisis);
+      })
+      
+      //let async = this.crises$ | async;
+      //console.log('async : ', async);
+
+    })
+    
+    
+  }
+}

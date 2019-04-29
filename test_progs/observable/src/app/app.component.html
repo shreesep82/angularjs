@@ -1,0 +1,33 @@
+<table border=1>
+    <thead>
+        <tr>
+            <td>
+                {{'Functionality'}}
+            </td>
+            <td>
+                {{'Function Body'}}
+            </td>
+            <td>
+                {{'Execution Result'}}
+            </td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+                {{'Create normal observable'}}
+            </td>
+            <td>
+                {{my_observable_inst.create_observable.toString()}}
+            </td>
+            <td ngNonBindable>
+                {{'Execution Result'}}
+            </td>
+        </tr>
+    </tbody>
+</table>
+<button >Click</button>
+
+<p>
+    {{my_observable_inst.create_observable() | async}}
+</p>
